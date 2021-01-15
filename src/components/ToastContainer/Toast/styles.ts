@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import { animated } from 'react-spring';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface ContainerProps {
   type?: 'success' | 'error' | 'info';
-  hasDescription: boolean;
+  hasdescription: number;
 }
 
 const toastTypeVariations = {
@@ -59,7 +59,7 @@ export const Container = styled(animated.div)<ContainerProps>`
     color: inherit;
   }
   ${props =>
-    !props.hasDescription &&
+    !props.hasdescription &&
     css`
       align-items: center;
       svg {
