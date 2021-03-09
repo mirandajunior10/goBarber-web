@@ -4,13 +4,14 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Container, Content, AnimationContainer, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
+import api from '../../services/api';
 
 interface ResetPasswordFormData {
   password: string;
@@ -20,9 +21,8 @@ interface ResetPasswordFormData {
 const ResetPassword: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
-
+  const location = useLocation();
   const { addToast } = useToast();
-
   const handleSubmit = useCallback(
     async (data: ResetPasswordFormData) => {
       try {
@@ -36,9 +36,25 @@ const ResetPassword: React.FC = () => {
           ),
         });
         await schema.validate(data, { abortEarly: false });
-
+        const token = location.search.replace('?token=', '');
+        if (!token) {
+          throw new Error();
+        }
         // Reset password
-        history.push('/signin');
+        const { password, password_confirmation } = data;
+        await api.post('/password/reset', {
+          password,
+          password_confirmation,
+          token,
+        });
+
+        addToast({
+          type: 'success',
+          title: 'Senha alterada',
+          description:
+            'Sua senha foi alterada! Agora você pode entrar na sua conta com a nova senha.',
+        });
+        history.push('/');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const validationErrors = getValidationErrors(err);
@@ -52,7 +68,7 @@ const ResetPassword: React.FC = () => {
         });
       }
     },
-    [addToast, history],
+    [location.search, addToast, history],
   );
 
   return (
