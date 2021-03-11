@@ -137,14 +137,11 @@ const Dashboard: React.FC = () => {
         <HeaderContent>
           <img src={logoImg} alt="GoBarber" />
           <Profile>
-            <img
-              src="https://avatars.githubusercontent.com/u/25303261?s=460&u=bffdc8aec76c2adc6464c27273542b49cd3ba417&v=4"
-              alt={user.name}
-            />
+            <img src={user.avatar_url} alt={user.name} />
             <div>
               <span>Bem-vindo</span>
               <Link to="/profile">
-                <strong>Jorlan Miranda</strong>
+                <strong>{user.name}</strong>
               </Link>
             </div>
           </Profile>
