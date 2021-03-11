@@ -4,6 +4,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { FiClock, FiPower } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -142,7 +143,9 @@ const Dashboard: React.FC = () => {
             />
             <div>
               <span>Bem-vindo</span>
-              <strong>Jorlan Miranda</strong>
+              <Link to="/profile">
+                <strong>Jorlan Miranda</strong>
+              </Link>
             </div>
           </Profile>
           <button type="button" onClick={signOut}>
