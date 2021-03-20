@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, ChangeEvent, useEffect } from 'react';
+import React, { useCallback, useRef, ChangeEvent } from 'react';
 import { FiMail, FiLock, FiUser, FiCamera, FiArrowLeft } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -63,10 +63,10 @@ const Profile: React.FC = () => {
           email,
           ...(data.old_password
             ? {
-              old_password,
-              password,
-              password_confirmation,
-            }
+                old_password,
+                password,
+                password_confirmation,
+              }
             : {}),
         };
 
@@ -130,7 +130,12 @@ const Profile: React.FC = () => {
           onSubmit={handleSubmit}
         >
           <AvatarInput>
-            <img src={user.avatar_url} alt={user.name} />
+            {user.avatar_url ? (
+              <img src={user.avatar_url} alt={user.name} />
+            ) : (
+              <FiUser size={186} />
+            )}
+
             <label htmlFor="avatar">
               <FiCamera />
               <input type="file" id="avatar" onChange={handleAvatarChange} />

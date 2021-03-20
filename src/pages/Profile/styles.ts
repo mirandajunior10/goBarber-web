@@ -68,6 +68,12 @@ export const AvatarInput = styled.div`
     height: 186px;
     border-radius: 50%;
   }
+  > svg {
+    width: 186px;
+    height: 186px;
+    border-radius: 50%;
+    background-color: #3e3b47;
+  }
   label {
     position: absolute;
     width: 48px;

@@ -40,6 +40,12 @@ export const Profile = styled.div`
     height: 56px;
     border-radius: 50%;
   }
+  > svg {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #3e3b47;
+  }
   div {
     display: flex;
     flex-direction: column;
