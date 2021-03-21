@@ -32,16 +32,15 @@ const SignUp: React.FC = () => {
           email: Yup.string()
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
-          password: Yup.string().min(6, 'No mínimo 6 digitos'),
+          password: Yup.string().min(6, 'No mínimo 6 dígitos'),
         });
         await schema.validate(data, { abortEarly: false });
-
         await api.post('/users', data);
         history.push('/');
         addToast({
           type: 'success',
           title: 'Cadastro realizado',
-          description: 'Você já pode realizar seu logon np GoBarber!',
+          description: 'Você já pode realizar seu logon no GoBarber!',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -49,6 +48,7 @@ const SignUp: React.FC = () => {
           formRef.current?.setErrors(validationErrors);
           return;
         }
+
         addToast({
           type: 'error',
           title: 'Erro no cadastro',
@@ -73,7 +73,7 @@ const SignUp: React.FC = () => {
               name="password"
               icon={FiLock}
               type="password"
-              placeholder="senha"
+              placeholder="Senha"
             />
 
             <Button type="submit">Cadastrar</Button>
