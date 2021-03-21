@@ -78,7 +78,7 @@ export const AvatarInput = styled.div`
     position: absolute;
     width: 48px;
     height: 48px;
-    background: #ff9900;
+    background: #ff9000;
     border-radius: 50%;
     right: 0;
     bottom: 0;
