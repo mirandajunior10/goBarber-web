@@ -67,7 +67,7 @@ const SignIn: React.FC = () => {
               name="password"
               icon={FiLock}
               type="password"
-              placeholder="senha"
+              placeholder="Senha"
             />
 
             <Button type="submit">Entrar</Button>
