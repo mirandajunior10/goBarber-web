@@ -37,7 +37,6 @@ const ResetPassword: React.FC = () => {
         });
         await schema.validate(data, { abortEarly: false });
         const token = location.search.replace('?token=', '');
-        console.log('token: ', token);
         if (!token) {
           throw new Error();
         }
